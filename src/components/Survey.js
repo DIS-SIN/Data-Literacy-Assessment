@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import * as SurveyJS from "survey-react";
+import firebase from 'firebase/app'
+import 'firebase/firestore';
 import {cspsColours, getUUID} from '../helpers';
 import SurveyJSON from '../content/survey.json';
 import './customSurveyJS.css';
@@ -15,6 +17,25 @@ export default function Survey(props) {
         button.className = styles.restartButton + " light";
 
         document.querySelector(".sv_nav").appendChild(button);
+
+        try {
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            var firebaseConfig = {
+                apiKey: "AIzaSyCRTDb00DqmQxGAbafGBR6Y6QBuF5EUvu4",
+                authDomain: "data-literacy-assessment-2020.firebaseapp.com",
+                projectId: "data-literacy-assessment-2020",
+                storageBucket: "data-literacy-assessment-2020.appspot.com",
+                messagingSenderId: "131754955393",
+                appId: "1:131754955393:web:dc2d47ce70d35cdbaa7380",
+                measurementId: "G-2RRJL725SY"
+            };
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
+            firebase.analytics();
+        } catch (error) {
+            // console.error(error);
+        }
     },[]);
 
     var defaultThemeColors = SurveyJS.StylesManager.ThemeColors["default"];
@@ -36,21 +57,19 @@ export default function Survey(props) {
     async function onComplete(result) {
         props.setSurveyResults(result.data);
 
-        let urlEncoded = new URLSearchParams();
-        urlEncoded.append("results", JSON.stringify(result.data));
-        urlEncoded.append("uuid", getUUID());
-
-        let options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': "application/x-www-form-urlencoded"
-            },
-            body: urlEncoded
+        let data = {
+            ...result.data
         };
 
-        let response = await fetch("https://us-central1-data-literacy-assessment.cloudfunctions.net/storeResults", options);
-        response = await response.text();
-        console.log(response);
+        let urlParams = new URLSearchParams(window.location.search);
+        let event = urlParams.get('ev');
+
+        if (event != ""){
+            data.event = event;
+        }
+
+        const res = await firebase.firestore().collection('results').doc(getUUID()).set(data);
+        console.log(res);
     }
 
     return (
