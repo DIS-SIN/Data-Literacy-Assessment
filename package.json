@@ -8,15 +8,10 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "firebase": "^8.2.7",
-    "gc-tortilla": "^1.0.3",
-    "html2pdf.js": "^0.9.2",
     "react": "^16.13.1",
-    "react-child-lock": "^1.0.2",
     "react-dom": "^16.13.1",
-    "react-markdown": "^4.3.1",
-    "react-scripts": "^3.4.3",
-    "survey-react": "^1.7.6",
-    "uuid": "^8.3.1"
+    "react-json-to-csv": "^1.0.4",
+    "react-scripts": "^3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
