@@ -35,6 +35,16 @@ export default function App(props) {
             resultsArray.push(doc.data());
         });
         console.log(resultsArray);
+
+        // A numerical 0 appears blank in spreadsheet, so making it into a string
+        resultsArray.forEach(result => {
+            for (const property in result) {
+                if (result[property] === 0){
+                    result[property] = "0";
+                }
+            }
+        });
+
         setResults(resultsArray);
     }
 
