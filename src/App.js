@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import CsvDownload from 'react-json-to-csv';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
+import personas from './content/personas.json';
+import dataLiteracyLevels from './content/dataLiteracyLevels.json';
 
 export default function App(props) {
 
@@ -36,6 +38,12 @@ export default function App(props) {
         });
         console.log(resultsArray);
 
+        resultsArray = resultsArray.map(result => {
+            result = findPersona(result);
+            result = findLiteracyLevel(result);
+            return result;
+        });
+
         // A numerical 0 appears blank in spreadsheet, so making it into a string
         resultsArray.forEach(result => {
             for (const property in result) {
@@ -46,6 +54,52 @@ export default function App(props) {
         });
 
         setResults(resultsArray);
+    }
+
+    function findPersona(surveyResults) {
+        let found;
+        personas.forEach(persona => {
+            let skillCount = 0;
+            let skillsFound = 0;
+            for (let skill in persona.skills){
+                if (persona.skills[skill].includes(surveyResults[skill])){
+                    skillsFound++;
+                }
+                skillCount++;
+            }
+
+            let personaPercentage = skillsFound / skillCount;
+
+            if (!found || personaPercentage > found.personaPercentage){
+                found = {
+                    personaPercentage: personaPercentage,
+                    ...persona
+                };
+            }
+
+        });
+        surveyResults.persona = found.title;
+        return surveyResults;
+    }
+
+    function findLiteracyLevel(surveyResults) {
+
+        let score = 0;
+
+        for (let skill in surveyResults){
+            if (typeof(surveyResults[skill]) === "number"){
+                score += surveyResults[skill];
+            }
+        }
+
+        let level = dataLiteracyLevels.find(level => {
+            if (score >= level.score.min && score <= level.score.max){
+                return true;
+            }
+        })
+
+        surveyResults.literacyLevel = level.title;
+        return surveyResults;
     }
 
     return (

@@ -1,0 +1,99 @@
+[
+    {
+        "title": "Front Line",
+        "emoji": "📈",
+        "skills": {
+            "askQuestions": [0,1],
+            "find": [0,1],
+            "get": [0,1],
+            "verify": [0,1],
+            "clean": [0,1],
+            "analyze": [0,1],
+            "visualize": [0,1],
+            "communicate": [0,1],
+            "assessAndInterpret": [0,1]
+        }
+    },
+
+    {
+        "title": "Analyst",
+        "emoji": "📊",
+        "skills": {
+            "askQuestions": [1,2],
+            "find": [1,2],
+            "get": [0,1],
+            "verify": [0,1],
+            "clean": [1],
+            "analyze": [0,1],
+            "visualize": [1,2,3],
+            "communicate": [2,3],
+            "assessAndInterpret": [1,2]
+        }
+    },
+
+    {
+        "title": "Data Scientist",
+        "emoji": "🥼",
+        "skills": {
+            "askQuestions": [2,3],
+            "find": [2,3],
+            "get": [2,3],
+            "verify": [2,3],
+            "clean": [2,3],
+            "analyze": [2,3],
+            "visualize": [2,3],
+            "communicate": [2,3],
+            "assessAndInterpret": [2,3]
+        }
+    },
+
+    {
+        "title": "Data Steward",
+        "emoji": "📋",
+        "skills": {
+            "askQuestions": [1,2],
+            "find": [2,3],
+            "get": [1,2],
+            "verify": [2,3],
+            "clean": [2,3],
+            "analyze": [0,1],
+            "visualize": [1,2],
+            "communicate": [1,2],
+            "assessAndInterpret": [2,3]
+        }
+    },
+
+    {
+        "title": "IT",
+        "emoji": "💻",
+        "skills": {
+            "askQuestions": [3],
+            "find": [3],
+            "get": [2,3],
+            "verify": [3],
+            "clean": [2,3],
+            "analyze": [1,2],
+            "visualize": [1,2],
+            "communicate": [1,2],
+            "assessAndInterpret": [2,3]
+        }
+    },
+
+    {
+        "title": "Executive",
+        "emoji": "👔",
+        "skills": {
+            "dataCulture": [2,3],
+            "dataEthicsAndSecurity": [2,3],
+            "askQuestions": [0,1],
+            "find": [1,2],
+            "get": [0,1],
+            "verify": [0,1],
+            "clean": [0,1],
+            "analyze": [0,1],
+            "visualize": [1,2],
+            "communicate": [1,2],
+            "assessAndInterpret": [0,1,2]
+        }
+    }
+]
