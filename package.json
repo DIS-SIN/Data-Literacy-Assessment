@@ -14,7 +14,7 @@
     "react-child-lock": "^1.0.2",
     "react-dom": "^16.13.1",
     "react-markdown": "^4.3.1",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^5.0.1",
     "survey-react": "^1.7.6",
     "uuid": "^8.3.1"
   },
